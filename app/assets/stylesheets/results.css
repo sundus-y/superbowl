@@ -1,0 +1,57 @@
+/*// Place all the styles related to the results controller here.*/
+/*// They will automatically be included in application.css.*/
+/*// You can use Sass (SCSS) here: http://sass-lang.com/*/
+
+/*.v_text{*/
+    /*-webkit-transform: rotate(-90deg);*/
+/*}*/
+body{
+    padding: 20px;
+}
+
+th{
+    height: 30px;
+    width: 50px;
+}
+
+.win_1 {
+    color: #000000;
+    background: #FCE6DE;
+}
+.win_2 {
+    color: #000000;
+    background: #EAD0C9;
+}
+.win_3 {
+    color: #000000;
+    background: #D9BAB5;
+}
+.win_4 {
+    color: #000000;
+    background: #C7A4A1;
+}
+.win_5 {
+    color: #000000;
+    background: #B68E8C;
+}
+.win_6 {
+    color: #000000;
+    background: #A47878;
+}
+.win_7 {
+    color: #ffffff;
+    background: #936264;
+}
+.win_8 {
+    color: #ffffff;
+    background: #814C4F;
+}
+.win_9 {
+    color: #ffffff;
+    background: #70363B;
+}
+
+.win_10{
+    color: #ffffff;
+    background: #5E2027;
+}

@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#t1" aria-controls="t1" role="tab" data-toggle="tab">Based on Seahawks Games(2010-14)</a></li>
+    <li role="presentation"><a href="#t2" aria-controls="t2" role="tab" data-toggle="tab">Based on Packers Games(2010-14)</a></li>
+    <li role="presentation"><a href="#t3" aria-controls="t3" role="tab" data-toggle="tab">Based on Seahawks vs Packers Games</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <% @table_hash.values.zip(@table_max_hash.values,(1..3).to_a) do |table,table_max,tab| %>
+      <% tab_class = tab==1 ? "tab-pane active" : "tab-pane" %>
+      <%= content_tag(:div, id: "t#{tab}", class: tab_class, role: 'tabpanel') do %>
+        <div role="tabpanel">
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <%= content_tag(:a, href: "#t#{tab}q1", :'arial-controls' => "t#{tab}q1", role: 'tab', :'data-toggle' => 'tab') do %>
+                Quarter 1
+              <% end %>
+            </li>
+            <li role="presentation">
+              <%= content_tag(:a, href: "#t#{tab}q2", :'arial-controls' => "t#{tab}q2", role: 'tab', :'data-toggle' => 'tab') do %>
+                Quarter 2
+              <% end %>
+            </li>
+            <li role="presentation">
+              <%= content_tag(:a, href: "#t#{tab}q3", :'arial-controls' => "t#{tab}q3", role: 'tab', :'data-toggle' => 'tab') do %>
+                Quarter 3
+              <% end %>
+            </li>
+            <li role="presentation">
+              <%= content_tag(:a, href: "#t#{tab}q4", :'arial-controls' => "t#{tab}q4", role: 'tab', :'data-toggle' => 'tab') do %>
+                Quarter 4
+              <% end %>
+            </li>
+            <li role="presentation">
+              <%= content_tag(:a, href: "#t#{tab}q5", :'arial-controls' => "t#{tab}q5", role: 'tab', :'data-toggle' => 'tab') do %>
+                All
+              <% end %>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <% table.each_value.zip((1..5).to_a) do |q,q_tab| %>
+              <% tab_class = q_tab==1 ? "tab-pane active" : "tab-pane" %>
+              <%= content_tag(:div, id: "t#{tab}q#{q_tab}", class: tab_class, role: 'tabpanel') do %>
+                <table class="table table-bordered">
+                  <colgroup></colgroup><colgroup></colgroup><colgroup></colgroup><colgroup></colgroup>
+                  <colgroup></colgroup><colgroup></colgroup><colgroup></colgroup><colgroup></colgroup>
+                  <colgroup></colgroup><colgroup></colgroup><colgroup></colgroup><colgroup></colgroup>
+                  <tr>
+                    <th colspan="12">
+                      <%= @se_t.name%>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>-</td><td>-</td><td>0</td><td>1</td><td>2</td><td>3</td>
+                    <td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+                  </tr>
+                  <tr>
+                    <th rowspan="12" class="v_text">
+                      <%= @gb_t.name%>
+                    </th>
+                  </tr>
+                  <% q.each_with_index do |row,i| %>
+                    <tr>
+                      <td><%=i%></td>
+                      <% row.each do |col| %>
+                        <% byebug if table_max[q_tab.to_s] == 0 %>
+                        <% color_index = ((col*10)/table_max[q_tab.to_s]).to_i %>
+                        <%= content_tag(:td, class: "win_#{color_index}") do %>
+                          <%= col %>
+                        <% end %>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </table>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
