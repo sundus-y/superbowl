@@ -8,19 +8,22 @@ class ResultsController < ApplicationController
     @gb_t = Team.last
     @table_hash = {}
     @table_max_hash = {}
+    @table_total_hash = {}
     r_se = Result.joins(:game).where(team:@se_t,games:{desc:'gnb'})
     r_gb = Result.joins(:game).where(team:@gb_t,games:{desc:'gnb'})
     @table_hash['gb'] = get_result_table(r_gb, r_se)
     @table_max_hash['gb'] = get_table_max(@table_hash['gb'])
+    @table_total_hash['gb'] = get_table_total(@table_hash['gb'])
     r_se = Result.joins(:game).where(team:@se_t,games:{desc:'sea'})
     r_gb = Result.joins(:game).where(team:@gb_t,games:{desc:'sea'})
     @table_hash['se'] = get_result_table(r_gb, r_se)
     @table_max_hash['se'] = get_table_max(@table_hash['se'])
+    @table_total_hash['se'] = get_table_total(@table_hash['se'])
     r_se = Result.joins(:game).where(team:@se_t,games:{desc:'all'})
     r_gb = Result.joins(:game).where(team:@gb_t,games:{desc:'all'})
     @table_hash['all'] = get_result_table(r_gb, r_se)
     @table_max_hash['all'] = get_table_max(@table_hash['all'])
-
+    @table_total_hash['all'] = get_table_total(@table_hash['all'])
   end
 
   def get_result_table(r_gb, r_se)
@@ -49,6 +52,15 @@ class ResultsController < ApplicationController
      '3' => table.values[2].reduce(&:+).max,
      '4' => table.values[3].reduce(&:+).max,
      '5' => table.values[4].reduce(&:+).max
+    }
+  end
+
+  def get_table_total(table)
+    {'1' => table.values[0].reduce(&:+).reduce(&:+),
+     '2' => table.values[1].reduce(&:+).reduce(&:+),
+     '3' => table.values[2].reduce(&:+).reduce(&:+),
+     '4' => table.values[3].reduce(&:+).reduce(&:+),
+     '5' => table.values[4].reduce(&:+).reduce(&:+)
     }
   end
 
