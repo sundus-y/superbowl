@@ -11,4 +11,12 @@ class Result < ActiveRecord::Base
                  points: p+n_points[0..i].reduce(&:+)).save!
     end
   end
+
+  def self.winner_game(i,j,q)
+    return true if i==0 && j==0 && q==1
+    return true if i==4 && j==4 && q==2
+    return true if i==4 && j==4 && q==3
+    return true if i==8 && j==4 && q==4
+    return false
+  end
 end

@@ -69,8 +69,9 @@
                   <% q.each_with_index do |row,i| %>
                     <tr>
                       <td><%=i%></td>
-                      <% row.each do |col| %>
+                      <% row.each_with_index do |col,j| %>
                         <% color_index = ((col*10)/table_max[q_tab.to_s]).to_i %>
+                        <% color_index = 'win' if Result.winner_game(i,j,q_tab) %>
                         <%= content_tag(:td, class: "win_#{color_index}") do %>
                           <%= "#{get_percentage(col,table_total[q_tab.to_s])}%" %>
                         <% end %>
