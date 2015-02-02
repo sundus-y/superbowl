@@ -5,22 +5,22 @@ class ResultsController < ApplicationController
   # GET /results.json
   def index
     @se_t = Team.first
-    @gb_t = Team.last
+    @ne_t = Team.last
     @table_hash = {}
     @table_max_hash = {}
     @table_total_hash = {}
-    r_se = Result.joins(:game).where(team:@se_t,games:{desc:'gnb'})
-    r_gb = Result.joins(:game).where(team:@gb_t,games:{desc:'gnb'})
-    @table_hash['gb'] = get_result_table(r_gb, r_se)
-    @table_max_hash['gb'] = get_table_max(@table_hash['gb'])
-    @table_total_hash['gb'] = get_table_total(@table_hash['gb'])
+    r_se = Result.joins(:game).where(team:@se_t,games:{desc:'nwe'})
+    r_gb = Result.joins(:game).where(team:@ne_t,games:{desc:'nwe'})
+    @table_hash['nwe'] = get_result_table(r_gb, r_se)
+    @table_max_hash['nwe'] = get_table_max(@table_hash['nwe'])
+    @table_total_hash['nwe'] = get_table_total(@table_hash['nwe'])
     r_se = Result.joins(:game).where(team:@se_t,games:{desc:'sea'})
-    r_gb = Result.joins(:game).where(team:@gb_t,games:{desc:'sea'})
+    r_gb = Result.joins(:game).where(team:@ne_t,games:{desc:'sea'})
     @table_hash['se'] = get_result_table(r_gb, r_se)
     @table_max_hash['se'] = get_table_max(@table_hash['se'])
     @table_total_hash['se'] = get_table_total(@table_hash['se'])
     r_se = Result.joins(:game).where(team:@se_t,games:{desc:'all'})
-    r_gb = Result.joins(:game).where(team:@gb_t,games:{desc:'all'})
+    r_gb = Result.joins(:game).where(team:@ne_t,games:{desc:'all'})
     @table_hash['all'] = get_result_table(r_gb, r_se)
     @table_max_hash['all'] = get_table_max(@table_hash['all'])
     @table_total_hash['all'] = get_table_total(@table_hash['all'])

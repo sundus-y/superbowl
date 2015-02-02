@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def setup_games_and_results(t_gb, t_se)
-    [['all', 'sea'], ['all', 'gnb'], ['sea', 'gnb']].each_with_index do |t, index|
+    [['all', 'sea'], ['all', 'nwe'], ['sea', 'nwe']].each_with_index do |t, index|
       years = ['2010', '2011', '2012', '2013', '2014']
       years = ['all'] if index == 2
       years.each do |year|
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   def setup_teams
     Team.new(name:'Seattle Seahawks').save!
-    Team.new(name:'Green Bay Packers').save!
+    Team.new(name:'New England Patriots').save!
   end
 
   def clean_tables
